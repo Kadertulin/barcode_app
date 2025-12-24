@@ -4,7 +4,7 @@ import '../models/product.dart';
 import '../providers/product_provider.dart';
 
 class ProductFormDialog extends StatefulWidget {
-  final Product? initial; // null => add, dolu => edit
+  final Product? initial; 
 
   const ProductFormDialog({super.key, this.initial});
 
@@ -71,7 +71,7 @@ class _ProductFormDialogState extends State<ProductFormDialog> {
                 _field(
                   controller: _barcodeCtrl,
                   label: 'BarcodeNo',
-                  enabled: !isEdit, // editte barcode değiştirmiyoruz
+                  enabled: !isEdit, 
                   validator: (v) {
                     if (v == null || v.trim().isEmpty) {
                       return 'Barcode boş olamaz';
@@ -140,7 +140,7 @@ class _ProductFormDialogState extends State<ProductFormDialog> {
                   keyboardType: TextInputType.number,
                   validator: (v) {
                     final text = (v ?? '').trim();
-                    if (text.isEmpty) return null; // optional
+                    if (text.isEmpty) return null; 
                     final val = int.tryParse(text);
                     if (val == null) return 'StockInfo tam sayı olmalı';
                     if (val < 0) return 'StockInfo negatif olamaz';
@@ -206,7 +206,7 @@ class _ProductFormDialogState extends State<ProductFormDialog> {
 
     final provider = context.read<ProductProvider>();
 
-    // şimdilik sadece ADD yapıyoruz (edit bir sonraki adımda)
+    
     final err = await provider.addProduct(product);
 
     if (!mounted) return;
@@ -217,7 +217,7 @@ class _ProductFormDialogState extends State<ProductFormDialog> {
       return;
     }
 
-    Navigator.pop(context); // dialog kapansın
+    Navigator.pop(context); 
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Product saved')),
     );
