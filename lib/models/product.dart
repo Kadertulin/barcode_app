@@ -5,7 +5,7 @@ class Product {
   final double unitPrice;
   final int taxRate;
   final double price;
-  final int? stockInfo; // nullable
+  final int? stockInfo; 
 
   Product({
     required this.barcodeNo,
