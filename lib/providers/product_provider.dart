@@ -8,14 +8,14 @@ class ProductProvider extends ChangeNotifier {
   List<Product> products = [];
   Product? searchedProduct;
 
-  // READ: All
+  
   Future<void> loadProducts() async {
     products = await _db.getAllProducts();
     searchedProduct = null;
     notifyListeners();
   }
 
-  // READ: By barcode
+  
   Future<Product?> searchByBarcode(String barcode) async {
     final p = await _db.getProductByBarcode(barcode);
     searchedProduct = p;
@@ -23,7 +23,7 @@ class ProductProvider extends ChangeNotifier {
     return p;
   }
 
-  // CREATE
+  
   Future<String?> addProduct(Product p) async {
     try {
       await _db.insertProduct(p);
@@ -34,7 +34,7 @@ class ProductProvider extends ChangeNotifier {
     }
   }
 
-  // UPDATE
+  
   Future<String?> updateProduct(Product p) async {
     try {
       await _db.updateProduct(p);
@@ -45,7 +45,7 @@ class ProductProvider extends ChangeNotifier {
     }
   }
 
-  // DELETE
+  
   Future<String?> deleteProduct(String barcode) async {
     try {
       await _db.deleteProduct(barcode);
