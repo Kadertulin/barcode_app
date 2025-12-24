@@ -13,14 +13,14 @@ class DatabaseHelper {
 
   Database? _database;
 
-  // DB'yi açar, yoksa oluşturur
+  
   Future<Database> get db async {
     if (_database != null) return _database!;
     _database = await _initDb();
     return _database!;
   }
 
-  // DB dosyasını oluşturur / açar
+  
   Future<Database> _initDb() async {
     final dbFolder = await getDatabasesPath();
     final path = join(dbFolder, _dbName);
@@ -32,7 +32,7 @@ class DatabaseHelper {
     );
   }
 
-  // TABLO OLUŞTURMA
+  
   Future<void> _onCreate(Database db, int version) async {
     await db.execute('''
       CREATE TABLE $tableProducts(
@@ -47,11 +47,7 @@ class DatabaseHelper {
     ''');
   }
 
-  // =========================
-  // CRUD OPERATIONS
-  // =========================
-
-  // CREATE
+  
   Future<int> insertProduct(Product product) async {
     final database = await db;
     return await database.insert(
@@ -61,7 +57,7 @@ class DatabaseHelper {
     );
   }
 
-  // READ - ALL
+  
   Future<List<Product>> getAllProducts() async {
     final database = await db;
     final List<Map<String, dynamic>> result =
@@ -70,7 +66,7 @@ class DatabaseHelper {
     return result.map((e) => Product.fromMap(e)).toList();
   }
 
-  // READ - BY BARCODE
+  
   Future<Product?> getProductByBarcode(String barcode) async {
     final database = await db;
     final result = await database.query(
@@ -84,7 +80,7 @@ class DatabaseHelper {
     return Product.fromMap(result.first);
   }
 
-  // UPDATE
+  
   Future<int> updateProduct(Product product) async {
     final database = await db;
     return await database.update(
@@ -95,7 +91,7 @@ class DatabaseHelper {
     );
   }
 
-  // DELETE
+  
   Future<int> deleteProduct(String barcode) async {
     final database = await db;
     return await database.delete(
