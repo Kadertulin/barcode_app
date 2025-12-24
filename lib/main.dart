@@ -8,7 +8,7 @@ import 'screens/main_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // DB yoksa oluşturur, varsa açar
+  
   await DatabaseHelper.instance.db;
 
   runApp(const MyApp());
